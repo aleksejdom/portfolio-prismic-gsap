@@ -9,9 +9,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "var(--background)", 
       },
+      fontFamily: {
+        body: ["var(--font-geist-mono)"]
+      }
     },
   },
   plugins: [],
