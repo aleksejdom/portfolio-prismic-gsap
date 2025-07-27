@@ -4,16 +4,17 @@ import "./globals.css";
 import { createClient } from "@/prismicio";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCursor";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const interLight = localFont({
+  src: "./fonts/InterLight.woff",
+  variable: "--font-inter-light",
+  weight: "100 200",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const interRegular = localFont({
+  src: "./fonts/InterRegular.woff",
+  variable: "--font-inter-regular",
+  weight: "100 400 900",
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -27,6 +28,14 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       images: [settings.data.og_image.url || ""],
     },
+    robots: {
+      index: false,
+      follow: false,
+      googleBot: {
+        index: false,
+        follow: false,
+      },
+    },
   }
 }
 
@@ -36,14 +45,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="de">
       
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${interLight.variable} ${interRegular.variable} antialiased`}
       >
         <Header />
         {children}
         <Footer />
+        <CustomCursor />
       </body>
       
     </html>

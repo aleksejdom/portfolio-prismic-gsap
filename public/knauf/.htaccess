@@ -1,0 +1,11 @@
+#################################################################
+# Auth
+#################################################################
+
+order allow,deny
+AuthType Basic
+AuthUserFile /release-it/daten/webs/aleksej/knauf/.htpasswd
+AuthName "RTS Kundenzugang"
+Require user release knauf
+Allow from 192.168.25
+Satisfy any

@@ -1,0 +1,104 @@
+
+.projectList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.projectCard {
+    width: 100%;
+    flex: 0 0 auto;
+    border-radius: 40px 40px 40px 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    justify-content: flex-end;
+    overflow: hidden;
+    border: 2px solid var(--background);
+  }
+
+
+.projectCard .details {
+    margin-bottom: 0;
+    background: var(--background);
+    border-radius: 0 25px 0 0;
+    padding: 25px;
+    box-sizing: border-box;
+    width: 85%;
+    z-index: 1;
+    transform: translate(-5px, 0);
+  }
+
+  
+.projectCard .projectTitle {
+    font-size: calc(21 / 16 * 1rem);
+    line-height: 1.2;
+    font-family: 'InterRegular', sans-serif;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: #ffffff; 
+    word-break: break-word;
+    hyphens: auto;
+  }
+  
+  .projectCard .projectDescription {
+    font-size: calc(13 / 16 * 1rem);
+    line-height: 24px;
+    color: var(--grey);
+    margin-bottom: 30px;
+  }
+  
+  .projectCard span,
+  .projectCard .projectLink {
+    color: #ffffff;
+    text-decoration: none; 
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    gap: 10px;
+    border-bottom: 1px solid #ffffff;
+    width: fit-content;
+    padding-bottom: 5px;
+    box-sizing: border-box;
+    font-size: calc(16 / 16 * 1rem);
+  }
+  
+  .projectCard .projectLink::after {
+    content: url(./../app/images/btn_arrow.svg);
+    width: 10px;
+    height: auto;
+    line-height: 1;
+  }
+  
+  .projectCard .projectImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 1px solid var(--background);
+  }
+
+  .projectItems > .headline {
+    font-size: calc(16 / 16 * 1rem);
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+    color: #b1b0b0;
+    margin-bottom: 40px;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .projectList { 
+        grid-template-columns: repeat(2, 1fr); 
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .projectList { 
+        grid-template-columns: repeat(1, 1fr); 
+    }
+  }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="114px" viewBox="0 0 100 114" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>02 Icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Screen-6.0.4-Vergleich" transform="translate(-1035.000000, -61.000000)">
+            <g id="02-Icons" transform="translate(915.000000, 61.000000)">
+                <g id="02-Icon" transform="translate(123.000000, 0.000000)">
+                    <polygon id="Fill-1" fill="#009FE3" points="45 66 49.4558952 66 49.4558952 36 45 36"></polygon>
+                    <path d="M47,111 C72.9578297,111 94,89.9572793 94,63.9987704 C94,38.0427207 72.9578297,17 47,17 C21.0421703,17 0,38.0427207 0,63.9987704 C0,89.9572793 21.0421703,111 47,111 Z" id="Stroke-1" stroke="#009FE3" stroke-width="5"></path>
+                    <polygon id="Fill-3" fill="#009FE3" points="33 0 33 6.37468764 43.3848033 6.37468764 43.3848033 17 49.6151967 17 49.6151967 6.37468764 60 6.37468764 60 0"></polygon>
+                    <polygon id="Fill-4" fill="#009FE3" points="77 28.3954421 81.6045579 33 91 23.6045579 86.3954421 19"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

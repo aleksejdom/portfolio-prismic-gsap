@@ -1,0 +1,59 @@
+{
+  "id": "tools",
+  "type": "SharedSlice",
+  "name": "Tools",
+  "description": "Tools",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "headline": {
+          "type": "Text",
+          "config": {
+            "label": "headline",
+            "placeholder": ""
+          }
+        },
+        "toolset": {
+          "type": "Group",
+          "config": {
+            "label": "toolset",
+            "repeat": true,
+            "fields": {
+              "tool": {
+                "type": "Select",
+                "config": {
+                  "label": "tool",
+                  "placeholder": "",
+                  "options": [
+                    "blender",
+                    "adobe",
+                    "nextjs",
+                    "prismic",
+                    "supabase",
+                    "react",
+                    "wordpress",
+                    "mysql",
+                    "spline",
+                    "threejs",
+                    "sistrix",
+                    "javascript",
+                    "html / css",
+                    "tumult hype",
+                    "after effects"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

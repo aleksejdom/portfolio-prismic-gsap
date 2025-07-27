@@ -1,0 +1,51 @@
+h1{
+		margin:0;
+		padding:0;
+		font-size:60px!important;
+		line-height:78px!important;
+		font-weight:normal!important;
+		font-family:'Rotis Sans Serif Regular'!important;
+	}
+
+	p.btn, .btn{
+		font-size:30px!important;
+		line-height:36px!important;
+
+	}
+	.p, p{
+		margin:0;
+		padding:0;
+		font-size:20px!important;
+		line-height:26px!important;
+		font-weight:normal!important;
+		font-family:'Rotis Sans Serif Regular'!important;
+	}
+
+	strong, .HYPE_scene strong, .txtStrong strong{
+		font-weight: 800!important;
+		font-family: "Rotis Sans Serif Pro Bold" !important;
+	}
+
+.cursor-start{
+	z-index: 9998;
+}
+.openImage{
+	z-index: 9999;
+}
+
+ul li, .HYPE_scene li{
+	font-size: 20px;
+	line-height: 26px;
+	list-style: square!important;
+}
+.HYPE_element_container:hover, .HYPE_element_container:focus, .HYPE_element_container:active, .HYPE_element_container:visited,
+.div:hover, .div:focus, .div:active, .div:visited,
+#stifte:hover, #stifte:active, #stifte:focus, #stifte:visited,
+#stifteEn:hover, #stifteEn:active, #stifteEn:focus, #stifteEn:visited,
+#div#btnClean:hover, #div#btnClean:active, #div#btnClean:focus, #div#btnClean:visited     {
+    outline: none!important;
+}
+*:focus {outline:none !important}
+*{
+	cursor:pointer;
+}

@@ -1,0 +1,47 @@
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 280px; /* Feste Breite */
+  height: 60px; /* Feste Höhe */
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--btn);
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 45px;
+  box-sizing: border-box;
+  overflow: hidden; /* Für das SVG */
+  transition: background 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+  margin-top: 35px; 
+  padding: 10px 25px;
+  box-sizing: border-box;
+}
+
+.btn:hover {
+  background: #ffffff;
+  border-radius: 45px; /* Runde Kanten */
+}
+
+.btn span {
+  position: relative;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 100;
+  font-family: var(--font-light);
+  z-index: 1; /* Über das SVG legen */
+  text-transform: uppercase;
+  transition: color 0.3s ease-in-out;
+}
+
+.btn:hover span {
+  color: #000000;
+}
+
+.btn img {
+  position: relative;
+  z-index: 1; /* Über das SVG legen */
+  width: 20px;
+  height: 20px;
+}

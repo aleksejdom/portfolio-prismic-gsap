@@ -1,0 +1,95 @@
+.tools_block {
+  width: 100%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+  margin-top: 60px;
+}
+
+.wrapper {
+  max-width: var(--layout);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.wrapper h3 {
+  text-transform: uppercase;
+  color: #b1b0b0;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Automatische Anpassung */
+  gap: 16px;
+  width: 100%;
+  max-width: 750px; /* Zentriert durch Begrenzung */
+  margin-top: 30px;
+  justify-content: center; /* Zentrierung */
+}
+
+.items.items-2 {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 200px;
+}
+.items.items-3 {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 320px;
+}
+.items.items-4 {
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 420px;
+}
+.items.items-5 {
+  grid-template-columns: repeat(5, 1fr);
+  max-width: 520px;
+}
+
+.items .item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.items .item img {
+  width: 28px;
+  height: auto;
+  opacity: 0.6;
+}
+
+.items .item p {
+  text-transform: uppercase;
+  line-height: 1;
+  color: #b1b0b0;
+  font-size: calc(14 / 16 * 1rem);
+}
+
+/* Zusätzliche Begrenzung für die Anzahl der Spalten */
+@media only screen and (max-width: 930px) { 
+  .tools_block { 
+    padding: 0 45px;
+    box-sizing: border-box;
+    margin-top: 0;
+  }
+  .tools_block .items.items-2,
+  .tools_block .items.items-3,
+  .tools_block .items.items-4,
+  .tools_block .items.items-5 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+  }
+}
+
+/* Begrenzung auf 2, 3 oder maximal 5 Spalten */
+@media (min-width: 600px) {
+  .items {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-auto-flow: row; /* Standardmäßiges Reihenlayout */
+    justify-content: center; /* Elemente zentrieren */
+    max-width: calc(150px * 5 + 4 * 16px); /* 5 Spalten maximal + Abstand */
+  }
+}

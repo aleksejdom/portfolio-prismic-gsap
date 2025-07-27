@@ -1,0 +1,14 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"spline_code": {
+				"__TYPE__": "FieldContent",
+				"value": "wild",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

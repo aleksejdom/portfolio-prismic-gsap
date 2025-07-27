@@ -1,0 +1,99 @@
+.callToActionBlock {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 70px;
+  margin-bottom: 120px;
+  position: relative;
+}
+
+.callToActionBlock .content {
+  position: absolute;
+  top: auto;
+  left: auto;
+}
+.callToActionBlock .headline {
+  display: flex;
+  text-align: center;
+  font-size: calc(42 / 16 * 1rem);
+  line-height: 1.2;
+  font-family: 'InterLight', sans-serif;
+  color: #ffffff;
+  gap: 10px;
+  justify-content: center;
+}
+
+.callToActionBlock .items {
+  display: flex;
+  gap: 15px;
+  margin-top: 35px;
+}
+
+.callToActionBlock .item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 45px;
+}
+
+.callToActionBlock .btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  width: 180px;
+  height: 60px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--btn);
+  outline: none;
+  transition: background 1s ease-in-out;
+  text-decoration: none;
+  text-transform: uppercase;
+  justify-content: center;
+  border-radius: 45px;
+}
+
+.callToActionBlock .btn svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  fill: none;
+  stroke: #fff;
+  stroke-dasharray: 50 480;
+  stroke-dashoffset: 50;
+  transition: 1s ease-in-out;
+  border-radius: 45px;
+}
+
+.callToActionBlock .btn:hover {
+  background: #ffffff;
+  border-radius: 45px;
+}
+
+.callToActionBlock .btn:hover span {
+  color: #000000;
+}
+
+.callToActionBlock .btn:hover svg {
+  stroke-dashoffset: -480;
+}
+
+.callToActionBlock .btn span {
+  color: white;
+  font-size: 18px;
+  font-weight: 100;
+  position: relative;
+  z-index: 1; /* Über das SVG legen */
+  border-radius: 45px;
+}
+
+.callToActionBlock .btn img {
+  position: relative;
+  z-index: 1; /* Über das SVG legen */
+  width: 20px;
+  height: 20px;
+}

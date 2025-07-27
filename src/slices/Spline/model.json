@@ -1,0 +1,26 @@
+{
+  "id": "spline",
+  "type": "SharedSlice",
+  "name": "Spline",
+  "description": "Spline",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "spline_code": {
+          "type": "Text",
+          "config": {
+            "label": "spline_code",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

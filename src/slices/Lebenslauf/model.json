@@ -1,0 +1,63 @@
+{
+  "id": "lebenslauf",
+  "type": "SharedSlice",
+  "name": "Lebenslauf",
+  "description": "Lebenslauf",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          }
+        },
+        "headline": {
+          "type": "Text",
+          "config": {
+            "label": "Headline",
+            "placeholder": ""
+          }
+        },
+        "items": {
+          "type": "Group",
+          "config": {
+            "label": "Items",
+            "repeat": true,
+            "fields": {
+              "titel": {
+                "type": "Text",
+                "config": {
+                  "label": "Titel",
+                  "placeholder": ""
+                }
+              },
+              "datum": {
+                "type": "Text",
+                "config": {
+                  "label": "Datum",
+                  "placeholder": ""
+                }
+              },
+              "beschreibung": {
+                "type": "Text",
+                "config": {
+                  "label": "Beschreibung",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

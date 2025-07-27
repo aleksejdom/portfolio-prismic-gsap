@@ -1,0 +1,28 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Qui aute ex ut esse nostrud aliquip nisi. Nostrud ex nulla voluptate sint nulla ex aliquip. Cupidatat et exercitation anim aliqua aliqua."
+						}
+					}
+				]
+			},
+			"link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com",
+					"text": "glad"
+				}
+			}
+		},
+		"items": []
+	}
+]

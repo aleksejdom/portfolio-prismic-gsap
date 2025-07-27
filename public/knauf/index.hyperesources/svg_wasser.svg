@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="153px" height="108px" viewBox="0 0 153 108" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Wasserstand</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#EEEEEE" offset="0%"></stop>
+            <stop stop-color="#479BB2" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Screen-6.0.5-Vergleich" transform="translate(-665.000000, -530.000000)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <g id="03-Mit-Dämmung" transform="translate(75.000000, -5.000000)">
+                <polygon id="Wasserstand" points="743 535 735.204016 546 724.48073 562.996094 711.816062 577 711.816062 592 696.2279 605 682.577314 605 653.34618 605 636.779713 612 618.268057 605 609.497574 612 590 619.996094 590 643 735.204016 643 743 643"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

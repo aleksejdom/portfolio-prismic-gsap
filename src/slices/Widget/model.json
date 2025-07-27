@@ -1,0 +1,26 @@
+{
+  "id": "widget",
+  "type": "SharedSlice",
+  "name": "Widget",
+  "description": "Widget",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "code": {
+          "type": "Text",
+          "config": {
+            "label": "code",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

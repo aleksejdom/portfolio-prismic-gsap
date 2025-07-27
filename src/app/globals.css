@@ -1,9 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "swiper/swiper-bundle.css";
 
 :root {
-  --background: #ffffff; 
+  --background: #333333; 
+  --grey: #b1b0b0;
+  --font-light: 'InterLight';
+  --layout: 930px;
+  --btn: #ffffff;
+}
+
+* {
+  user-select: none; /* Verhindert Markieren von Text */
+}
+
+.no-select {
+  -webkit-user-select: none; /* Safari/Chrome */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE */
+  user-select: none;         /* Standard */
+}
+
+html,
+body {
+  height: 100%;   
+}
+
+body {
+  overflow-x: hidden;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,5 +39,210 @@
 
 body { 
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-light);
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 45px;
+  margin-bottom: 90px;
+}
+
+nav {
+  align-self: center;
+  justify-self: center;
+  margin-top: 45px;
+  margin-bottom: 54px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Ensures it's always visible */
+  z-index: 10;
+  margin-left: auto;
+  margin-right: auto;
+  height: 45px;
+  width: 100px;
+  top: 0;
+
+  /* Glass effect styles */
+  background: rgba(255, 255, 255, 0.2); /* Light transparent white */
+  backdrop-filter: blur(15px); /* Blur the background */
+  -webkit-backdrop-filter: blur(15px); /* For Safari */
+  border-radius: 25px; /* Rounded corners */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border for definition */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Soft shadow for a floating effect */
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+  color: #ffffff;
+}
+
+/* Optional: Add a hover effect for interaction */
+nav:hover {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+nav .open {
+  width: 100%;
+  padding: 9px 15px;
+  box-sizing: border-box;
+  border-radius: 45px;
+  font-size: calc(14 / 16 * 1rem);
+  line-height: 1;
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+  position: absolute; 
+  top: 0;
+  left: auto;
+  right: auto;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+nav .open > svg {
+  width: 25px;
+  height: auto;
+}
+
+nav .menu {
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  position: absolute;
+  top: 53px;
+  left: auto;
+  right: auto;
+  z-index: 10;
+  width: 100%;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+nav .menu.active {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+nav .menu.active p {
+  font-size: calc(10 / 16 * 1rem);
+  padding-left: 15px;
+  padding-top: 15px;
+  box-sizing: border-box;
+}
+
+nav .menu > ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+nav .menu > ul > li > a {
+  font-size: calc(18 / 16 * 1rem);
+  line-height: 1;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
+  text-transform: capitalize;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav .menu > ul > li > a > svg {
+  width: 16px;
+  height: auto;
+}
+
+nav .menu > ul > li {
+  border-bottom: 1px solid #ededed;
+  width: 100%;
+  padding: 8px 0;
+  box-sizing: border-box;
+}
+
+p.test {max-width: 50px;}
+
+.project-intro {
+  max-width: var(--layout);
+  color: #ffffff;
+  margin: 0 auto 80px;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.project-intro h1 {
+  font-size: calc(64 / 16 * 1rem);
+  line-height: 1.2;
+  margin-bottom: 15px;
+}
+
+.project-intro p {
+  color: var(--grey);
+  font-size: calc(18 / 16 * 1rem);
+  line-height: 1.2;
+}
+
+.swiper-slide.swiper-slide-prev,
+.swiper-slide.swiper-slide-next {
+  opacity: 0.2; 
+}
+
+
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 15px!important;
+  line-height: 1;
+  color: #ffffff;
+}
+
+* {
+  cursor: none;        
+}
+ 
+/* *{
+  cursor: none;
+}
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  opacity: 1; 
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.custom-cursor--link {
+  transform: translate(-50%, -50%) scale(1.5);
+}
+.customCursorLink {
+  text-decoration: underline;
+  color: #ff0000; 
+} 
+  */
+
+@media only screen and (max-width: 768px) {
+  .project-intro h1 {
+    font-size: calc(32 / 16 * 1rem);
+  }
+  .project-intro {
+    margin-bottom: 60px;
+  }
 }

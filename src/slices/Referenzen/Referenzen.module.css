@@ -1,0 +1,165 @@
+.referenzen {
+  padding: 50px 0;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--background);
+  width: 100vw; /* Nimmt die gesamte Fensterbreite ein */
+  margin-top: 100px;
+}
+
+.headline {
+  font-size: calc(12 / 16 * 1rem);
+  margin-bottom: 40px;
+  text-align: center;
+  color: var(--grey);
+  text-transform: uppercase;
+  font-family: 'InterLight', sans-serif;
+  letter-spacing: 4px;
+  width: fit-content;
+  align-self: center;
+  justify-self: center;
+}
+
+.items {
+  display: flex;
+  gap: 30px; /* Abstand zwischen den Karten */
+  overflow: hidden; /* Kein nativer Scroll */
+  position: relative;
+  width: max-content; /* Passt die Breite an den Inhalt an */
+  padding: 0 45px;
+  box-sizing: border-box;
+}
+
+.item {
+  width: 435px;
+  flex: 0 0 auto;
+  border-radius: 45px 45px 45px 0; 
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 615px;
+  justify-content: flex-end;
+  overflow: hidden;
+  border: 2px solid var(--background);
+}
+
+.infobox {
+  margin-bottom: 0;
+  background: var(--background);
+  border-radius: 0 45px 0 0;
+  padding: 25px;
+  box-sizing: border-box;
+  width: 85%;
+  z-index: 1; 
+  transform: translate(-5px, 0);
+}
+
+.label {
+  font-size: calc(12 / 16 * 1rem);
+  text-transform: uppercase;
+  color: var(--grey); 
+  margin-bottom: 5px;
+}
+
+.name {
+  font-size: calc(28 / 16 * 1rem);
+  line-height: 1.2;
+  font-family: 'InterRegular', sans-serif;
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: #ffffff;
+  margin-bottom: 25px;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.desc {
+  font-size: calc(14 / 16 * 1rem);
+  line-height: 24px;
+  color: var(--grey);
+  margin-bottom: 30px;
+}
+
+.referenzen a.cta {
+  color: #ffffff;
+  text-decoration: none; 
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  gap: 10px;
+  border-bottom: 1px solid #ffffff;
+  width: fit-content;
+  padding-bottom: 5px;
+  box-sizing: border-box;
+  font-size: calc(16 / 16 * 1rem);
+}
+
+.referenzen a.cta::after {
+  content: url(./../../app/images/btn_arrow.svg);
+  width: 10px;
+  height: auto;
+  line-height: 1;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover; 
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1px solid var(--background);
+}
+
+.infobox > span,
+.referenzen a.ctaWrapper {
+  display: flex;
+  margin-top: 70px;
+  text-align: center;
+  font-size: calc(42 / 16 * 1rem);
+  line-height: 1.2;
+  font-family: 'InterLight', sans-serif;
+  color: #ffffff;
+  text-decoration: none; 
+  gap: 10px;
+  justify-content: center;
+}
+
+.infobox > span {
+  margin-top: 10px;
+}
+
+.infobox > span::after,
+.referenzen > a::after {
+  content: url(./../../app/images/btn_arrow.svg);
+  width: 30px;
+  height: auto;
+  line-height: 1;
+  transform: scale(2) translateY(-4px);
+}
+
+.infobox > span::after {
+  transform: scale(1.4) translateY(0px);
+}
+
+.infobox > span {
+  font-size: calc(20 / 16 * 1rem);
+  justify-self: flex-start;
+}
+
+@media only screen and (max-width: 930px) {
+  .item { 
+    width: 300px;
+    height: 450px;
+  }
+  .referenzen a { 
+    font-size: calc(21 / 16 * 1rem);
+  }
+
+  .referenzen a::after {
+    width: 24px; 
+    line-height: 1;
+    transform: scale(1) translateY(0px);
+  }
+}

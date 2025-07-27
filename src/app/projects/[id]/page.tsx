@@ -1,0 +1,65 @@
+// app/projects/[id]/page.tsx
+import { notFound } from "next/navigation";
+import { createClient } from "@/prismicio";
+import { SliceZone } from "@prismicio/react";
+import { components } from "@/slices";
+import SimilarProjects from "@/components/SimilarProjects";
+
+export const dynamic = "force-dynamic"; // stellt sicher, dass jede Seite individuell geladen wird (nicht im Cache)
+export const revalidate = 60; // ISR: Seite wird alle 60 Sekunden im Hintergrund neu aufgebaut
+
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const client = createClient();
+
+  try {
+    const project = await client.getByUID("projects", params.id);
+
+    return {
+      title: project.data.meta_title || project.data.title || "Projektseite",
+      description: project.data.meta_description || project.data.description || "Details zu diesem Projekt.",
+      openGraph: {
+        title: project.data.meta_title || project.data.title,
+        description: project.data.meta_description || project.data.description,
+        images: [
+          {
+            url: project.data.meta_image?.url || "/default-og-image.jpg",
+            alt: project.data.meta_image?.alt || "Projektbild",
+          },
+        ],
+      },
+    };
+  } catch (error) {
+    return {
+      title: "Projekt nicht gefunden",
+      description: "Das angeforderte Projekt konnte nicht gefunden werden.",
+    };
+  }
+}
+
+export default async function ProjectPage({ params }: { params: { id: string } }) {
+  const client = createClient();
+
+  let project;
+  try {
+    project = await client.getByUID("projects", params.id);
+  } catch (error) {
+    notFound(); // 404-Seite anzeigen
+  }
+
+  if (!project) {
+    notFound(); // auch bei null-sicheren Fehlern
+  }
+
+  return (
+    <main>
+      <div className="project-intro">
+        <h1>{project.data.title}</h1>
+        <p>{project.data.description}</p>
+      </div>
+
+      <SliceZone slices={project.data.slices} components={components} />
+
+      <SimilarProjects currentProjectId={project.id} category={project.data.kategorie} />
+    </main>
+  );
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="114px" viewBox="0 0 100 114" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>05 Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="16 35 78 35 78 97 16 97"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Screen-6.0.11-Vergleich" transform="translate(-1403.000000, -61.000000)">
+            <g id="02-Icons" transform="translate(915.000000, 61.000000)">
+                <g id="05-Icon" transform="translate(491.000000, 0.000000)">
+                    <path d="M47,111 C72.9578297,111 94,89.9572793 94,63.9987704 C94,38.0427207 72.9578297,17 47,17 C21.0421703,17 0,38.0427207 0,63.9987704 C0,89.9572793 21.0421703,111 47,111 Z" id="Stroke-1" stroke="#009FE3" stroke-width="5"></path>
+                    <polygon id="Fill-3" fill="#009FE3" points="33 0 33 6.37468764 43.3848033 6.37468764 43.3848033 17 49.6151967 17 49.6151967 6.37468764 60 6.37468764 60 0"></polygon>
+                    <polygon id="Fill-4" fill="#009FE3" points="77 28.3954421 81.6045579 33 91 23.6045579 86.3954421 19"></polygon>
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-2"></g>
+                    <path d="M68.9205513,44.0786363 C81.0264829,56.1850226 81.0264829,75.8138238 68.9205513,87.9202102 C56.8146196,100.026597 37.1865557,100.026597 25.0806241,87.9202102 C19.0276582,81.867017 16,73.9332201 16,65.9970725 L46.9794317,65.9782664 L46.9606263,35.0000219 C54.9082292,34.9906188 62.8581828,38.01604 68.9205513,44.0786363" id="Fill-1" fill="#009FE3" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

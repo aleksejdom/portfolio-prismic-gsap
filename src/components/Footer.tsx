@@ -1,4 +1,5 @@
 import { createClient } from "@/prismicio";
+import styles from "./Footer.module.css";
 
 export default async function Footer() {
 
@@ -6,8 +7,12 @@ export default async function Footer() {
   const settings = await client.getSingle("settings"); 
 
    return ( 
-     <footer>
-        {settings.data.site_title} - { new Date().getFullYear() }
+     <footer className={styles.footer}>
+      <div className={styles.footerWrapper}>
+        <p>
+          {settings.data.site_title} - { new Date().getFullYear() }
+        </p>
+      </div>
      </footer>
    )
 }

@@ -12,7 +12,7 @@ export default {
         background: "var(--background)", 
       },
       fontFamily: {
-        body: ["var(--font-geist-mono)"]
+        body: ["var(--font-inter-regular)"]
       }
     },
   },

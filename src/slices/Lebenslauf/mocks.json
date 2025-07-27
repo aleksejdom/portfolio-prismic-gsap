@@ -1,0 +1,53 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"label": {
+				"__TYPE__": "FieldContent",
+				"value": "happy",
+				"type": "Text"
+			},
+			"headline": {
+				"__TYPE__": "FieldContent",
+				"value": "house",
+				"type": "Text"
+			},
+			"items": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"titel",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "put",
+									"type": "Text"
+								}
+							],
+							[
+								"datum",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "what",
+									"type": "Text"
+								}
+							],
+							[
+								"beschreibung",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "wrong",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

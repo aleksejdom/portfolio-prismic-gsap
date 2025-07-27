@@ -1,0 +1,78 @@
+.text_box {
+  background: var(--background);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 45px;
+  box-sizing: border-box;
+  margin-top: 50px;
+}
+
+.text_box .wrapper {
+  max-width: calc(var(--layout) - 100px);
+  width: 100%;
+}
+
+.text_box p {
+  font-size: calc(42 / 16 * 1rem);
+  line-height: 1.3;
+  font-family: 'InterLight', sans-serif;
+  font-weight: 200;
+  color: #ffffff;
+}
+
+.text_box h3 {
+  font-size: calc(24 / 16 * 1rem);
+  color: #ffffff;
+}
+.text_box .word {
+  display: inline-block;
+  margin-right: 0.3em; /* Abstand zwischen den Wörtern */
+  opacity: 0; /* Startzustand */
+  transform: translateY(20px); /* Offset für Animation */
+  transition: all 0.3s ease; /* Fallback */
+}
+
+.text_box .link {
+  display: flex;
+  background: #ffffff;
+  padding: 10px 25px;
+  box-sizing: border-box;
+  margin-top: 25px;
+  border-radius: 45px;
+  font-size: calc(16 / 16 * 1rem);
+  line-height: 1.2;
+  text-decoration: none;
+  color: #000;
+  align-items: center;
+  gap: 7px;
+  opacity: 0; /* Unsichtbar bis zur Animation */
+  transform: translateY(20px); /* Startzustand */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Sanftes Einblenden */
+  width: fit-content;
+}
+
+.text_box .link::after {
+  content: url(./../../app/images/arrow.svg);
+  width: 10px;
+  height: auto;
+  line-height: 1;
+}
+
+.text {
+  color: white;
+  font-size: 18px;
+  font-weight: 100;
+}
+
+
+@media only screen and (max-width: 930px) {
+  .text_box p {
+    font-size: calc(24 / 16 * 1rem); 
+    margin-top: 0;
+  }
+  .text_box {
+    margin-top: 0;
+  }
+}
