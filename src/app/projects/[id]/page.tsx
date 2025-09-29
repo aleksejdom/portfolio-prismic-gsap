@@ -10,9 +10,9 @@ export const revalidate = 60;
 
 // --- SEO ---
 export async function generateMetadata(
-  { params }: PageProps<"/projects/[id]">
+  { params }: { params: { id: string } }
 ): Promise<Metadata> {
-  const { id } = await params; // Next 15: params ist Promise
+  const { id } = params; // Next 15: params ist Promise
   const client = createClient();
 
   try {
@@ -62,10 +62,9 @@ export async function generateMetadata(
 
 // --- Page ---
 export default async function ProjectPage(
-   props : PageProps<"/projects/[id]">
-) {
-  const { params } = props;
-  const { id } = await params; // Promise auflösen
+  { params }: { params: { id: string } }
+) { 
+  const { id } = params; // Promise auflösen
   const client = createClient();
 
   try {
