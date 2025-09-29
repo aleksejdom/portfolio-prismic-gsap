@@ -8,18 +8,28 @@ import SimilarProjects from "@/components/SimilarProjects";
 export const dynamic = "force-dynamic"; // stellt sicher, dass jede Seite individuell geladen wird (nicht im Cache)
 export const revalidate = 60; // ISR: Seite wird alle 60 Sekunden im Hintergrund neu aufgebaut
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
+// WICHTIG: params ist in Next.js 15 ein Promise
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   const client = createClient();
 
   try {
-    const project = await client.getByUID("projects", params.id);
+    const project = await client.getByUID("projects", id);
 
     return {
       title: project.data.meta_title || project.data.title || "Projektseite",
-      description: project.data.meta_description || project.data.description || "Details zu diesem Projekt.",
+      description:
+        project.data.meta_description ||
+        project.data.description ||
+        "Details zu diesem Projekt.",
       openGraph: {
         title: project.data.meta_title || project.data.title,
-        description: project.data.meta_description || project.data.description,
+        description:
+          project.data.meta_description || project.data.description,
         images: [
           {
             url: project.data.meta_image?.url || "/default-og-image.jpg",
@@ -28,7 +38,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
         ],
       },
     };
-  } catch (error) {
+  } catch {
     return {
       title: "Projekt nicht gefunden",
       description: "Das angeforderte Projekt konnte nicht gefunden werden.",
@@ -36,30 +46,38 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   }
 }
 
-export default async function ProjectPage({ params }: { params: { id: string } }) {
+// WICHTIG: params auch hier als Promise typisieren und awaiten
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   const client = createClient();
 
-  let project;
   try {
-    project = await client.getByUID("projects", params.id);
-  } catch (error) {
-    notFound(); // 404-Seite anzeigen
+    const project = await client.getByUID("projects", id);
+
+    if (!project) {
+      return notFound();
+    }
+
+    return (
+      <main>
+        <div className="project-intro">
+          <h1>{project.data.title}</h1>
+          <p>{project.data.description}</p>
+        </div>
+
+        <SliceZone slices={project.data.slices} components={components} />
+
+        <SimilarProjects
+          currentProjectId={project.id}
+          category={project.data.kategorie}
+        />
+      </main>
+    );
+  } catch {
+    return notFound(); // 404-Seite anzeigen
   }
-
-  if (!project) {
-    notFound(); // auch bei null-sicheren Fehlern
-  }
-
-  return (
-    <main>
-      <div className="project-intro">
-        <h1>{project.data.title}</h1>
-        <p>{project.data.description}</p>
-      </div>
-
-      <SliceZone slices={project.data.slices} components={components} />
-
-      <SimilarProjects currentProjectId={project.id} category={project.data.kategorie} />
-    </main>
-  );
 }
