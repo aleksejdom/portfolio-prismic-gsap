@@ -1,19 +1,21 @@
 // app/projects/[id]/page.tsx
+import type { Metadata, ResolvingMetadata, PageProps } from "next";
 import { notFound } from "next/navigation";
 import { createClient } from "@/prismicio";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import SimilarProjects from "@/components/SimilarProjects";
 
-export const dynamic = "force-dynamic"; // stellt sicher, dass jede Seite individuell geladen wird (nicht im Cache)
-export const revalidate = 60; // ISR: Seite wird alle 60 Sekunden im Hintergrund neu aufgebaut
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
-// WICHTIG: params ist in Next.js 15 ein Promise
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+type Params = { id: string };
+
+// --- SEO ---
+export async function generateMetadata(
+  { params }: PageProps<Params>,
+  _parent: ResolvingMetadata
+): Promise<Metadata> {
   const { id } = await params;
   const client = createClient();
 
@@ -46,12 +48,10 @@ export async function generateMetadata({
   }
 }
 
-// WICHTIG: params auch hier als Promise typisieren und awaiten
-export default async function ProjectPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+// --- Page ---
+export default async function ProjectPage(
+  { params }: PageProps<Params>
+) {
   const { id } = await params;
   const client = createClient();
 
@@ -59,7 +59,7 @@ export default async function ProjectPage({
     const project = await client.getByUID("projects", id);
 
     if (!project) {
-      return notFound();
+      notFound();
     }
 
     return (
@@ -78,6 +78,6 @@ export default async function ProjectPage({
       </main>
     );
   } catch {
-    return notFound(); // 404-Seite anzeigen
+    notFound();
   }
 }
