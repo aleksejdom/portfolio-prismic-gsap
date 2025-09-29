@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createClient } from "@/prismicio";
 import { PrismicNextLink } from "@prismicio/next";
 import { gsap } from "gsap";
@@ -9,38 +9,44 @@ export default function Header() {
   const [isActive, setIsActive] = useState(false); 
   const [isLoading, setIsLoading] = useState(true);
   const [settings, setSettings] = useState<any>(null);
+  const navRef = useRef<HTMLDivElement | null>(null);
 
   const toggleMenu = () => {
     setIsActive((prev) => {
       const newState = !prev;
-
-      // GSAP animation
-      if (newState) {
-        gsap.to("nav", { 
-          height: "255px", 
-          width: "295px", 
-          duration: 0.3 
-        });
-        gsap.to("nav .menu", { 
-          opacity: 1,  
-          duration: 0.3,
-          delay: 0.4 
-        });
-      } else {
-        gsap.to("nav", { 
-          height: "45px", 
-          width: "115px", 
-          duration: 0.3 
-        });
-        gsap.to("nav .menu", { 
-          opacity: 0,  
-          duration: 0.3 
-        }); 
-      }
-
+      animateMenu(newState);
       return newState;
     });
   };
+
+  const closeMenu = () => {
+    setIsActive(false);
+    animateMenu(false);
+  };
+
+  const animateMenu = (open: boolean) => {
+    if (open) {
+      gsap.to("nav", { height: "255px", width: "295px", duration: 0.3 });
+      gsap.to("nav .menu", { opacity: 1, duration: 0.3, delay: 0.4 });
+    } else {
+      gsap.to("nav", { height: "45px", width: "115px", duration: 0.3 });
+      gsap.to("nav .menu", { opacity: 0, duration: 0.3 });
+    }
+  };
+
+  // Click outside handler
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isActive && navRef.current && !navRef.current.contains(event.target as Node)) {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isActive]);
 
   // Fetch data from Prismic
   useEffect(() => {
@@ -97,7 +103,7 @@ export default function Header() {
 
   return (
     <header>
-      <nav>
+      <nav ref={navRef}>
         {/* Toggle Button */}
         <div className="open" onClick={toggleMenu}>
           {!isActive ?  
@@ -127,7 +133,7 @@ export default function Header() {
             ))}
           </ul>
           <p>
-            Digitale Erlebnisse, die überzeugen.<br></br> Von 3D bis Web.
+            Digitale Erlebnisse, die überzeugen.<br />Von 3D bis Web.
           </p>
         </div>
       </nav>
