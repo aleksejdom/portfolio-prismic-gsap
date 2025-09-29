@@ -1,14 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Content } from "@prismicio/client";
-import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import type { Content } from "@prismicio/client";
+import { PrismicRichText, type SliceComponentProps } from "@prismicio/react";
 import styles from "./TextBox.module.css";
 import Button from "@/components/Button";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export type TextBoxProps = SliceComponentProps<Content.TextBoxSlice>;
 
@@ -28,80 +24,92 @@ const TextBox = ({ slice }: TextBoxProps): JSX.Element => {
   const hasValidLink = !!linkUrl && !!linkText;
 
   useEffect(() => {
-    const wrapper = wrapperRef.current;
-    const button = buttonRef.current;
-    if (!wrapper) return;
+    let killScrollTrigger: (() => void) | null = null;
+    let resizeHandler: (() => void) | null = null;
 
-    const scrollTriggerId = `textbox-${Math.random().toString(36).substr(2, 9)}`;
+    // Nur im Browser
+    /* if (typeof window === "undefined") return; */
 
-    const setupScrollTrigger = () => {
-      const paragraphs = wrapper.querySelectorAll("p");
+    (async () => {
+      // ✅ GSAP & Plugin nur im Browser laden
+      const { gsap } = await import("gsap");
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          id: scrollTriggerId,
-          trigger: wrapper,
-          start: "top 90%",
-          end: "bottom 30%",
-          scrub: true,
-          markers: false,
-        },
-      });
+      const wrapper = wrapperRef.current;
+      const button = buttonRef.current;
+      if (!wrapper) return;
 
-      paragraphs.forEach((paragraph) => {
-        const words = paragraph.textContent
-          ?.split(" ")
-          .map((word) => {
-            const span = document.createElement("span");
-            span.textContent = `${word} `;
-            span.className = styles.word;
-            return span;
-          }) ?? [];
+      const scrollTriggerId = `textbox-${Math.random().toString(36).slice(2, 11)}`;
 
-        paragraph.replaceChildren(...words);
+      const setupScrollTrigger = () => {
+        const paragraphs = wrapper.querySelectorAll("p");
 
-        timeline.fromTo(
-          words,
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            ease: "power4.out",
-            stagger: 0.05,
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            id: scrollTriggerId,
+            trigger: wrapper,
+            start: "top 90%",
+            end: "bottom 30%",
+            scrub: true,
+            markers: false,
           },
-          "-=0.4"
-        );
-      });
+        });
 
-      // ✅ Optional: Button animieren, nur wenn vorhanden
-      if (button) {
-        timeline.fromTo(
-          button,
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            ease: "power4.out",
-          },
-          "+=0.2"
-        );
-      }
-    };
+        paragraphs.forEach((paragraph) => {
+          const words =
+            paragraph.textContent
+              ?.split(" ")
+              .map((word) => {
+                const span = document.createElement("span");
+                span.textContent = `${word} `;
+                span.className = styles.word;
+                return span;
+              }) ?? [];
 
-    setupScrollTrigger();
+          paragraph.replaceChildren(...words);
 
-    const resizeHandler = () => {
-      ScrollTrigger.getById(scrollTriggerId)?.kill();
+          timeline.fromTo(
+            words,
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power4.out",
+              stagger: 0.05,
+            },
+            "-=0.4"
+          );
+        });
+
+        if (button) {
+          timeline.fromTo(
+            button,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" },
+            "+=0.2"
+          );
+        }
+      };
+
       setupScrollTrigger();
-    };
 
-    window.addEventListener("resize", resizeHandler);
+      resizeHandler = () => {
+        const st = ScrollTrigger.getById(scrollTriggerId);
+        st?.kill();
+        setupScrollTrigger();
+      };
+      window.addEventListener("resize", resizeHandler);
+
+      killScrollTrigger = () => {
+        ScrollTrigger.getAll().forEach((t: any) => t.kill());
+      };
+    })();
 
     return () => {
-      ScrollTrigger.getById(scrollTriggerId)?.kill();
-      window.removeEventListener("resize", resizeHandler);
+      killScrollTrigger?.();
+      if (resizeHandler) window.removeEventListener("resize", resizeHandler);
     };
   }, []);
 
@@ -115,16 +123,14 @@ const TextBox = ({ slice }: TextBoxProps): JSX.Element => {
         <PrismicRichText
           field={slice.primary.content}
           components={{
-            paragraph: ({ children }) => <p className={styles.paragraph}>{children}</p>,
+            paragraph: ({ children }) => (
+              <p className={styles.paragraph}>{children}</p>
+            ),
           }}
         />
 
         {hasValidLink && (
-          <Button
-            buttonRef={buttonRef}
-            href={linkUrl}
-            text={linkText}
-          />
+          <Button buttonRef={buttonRef} href={linkUrl} text={linkText} />
         )}
       </div>
     </div>

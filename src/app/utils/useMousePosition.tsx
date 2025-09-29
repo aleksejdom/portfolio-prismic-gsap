@@ -7,7 +7,7 @@ const useMousePosition = () => {
   });
 
   useEffect(() => {
-    if (typeof window === "undefined") return; // <-- Nur im Browser ausführen!
+    /* if (typeof window === "undefined") return;  */
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };

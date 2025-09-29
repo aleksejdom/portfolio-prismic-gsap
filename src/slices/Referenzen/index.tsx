@@ -95,7 +95,7 @@ const Referenzen = ({ slice }: ReferenzenProps): JSX.Element => {
       {slice.primary.cta && (
         <PrismicNextLink
           field={slice.primary.cta}
-          className={styles.ctaWrapper}
+          className={styles.ctaWrapper} 
         >
           Zu den Referenzen
         </PrismicNextLink>

@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 import { createClient } from "@/prismicio";
 import { SliceZone } from "@prismicio/react";
-import { components } from "@/slices";
-import LenisWrapper from "@/components/LenisWrapper";  
+import { components } from "@/slices";  
 
 export const dynamic = "force-dynamic"; // Verhindert statisches Caching
 

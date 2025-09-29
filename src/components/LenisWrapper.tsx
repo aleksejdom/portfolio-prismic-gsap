@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 export default function SmoothScroll() {
   useEffect(() => {
-    if (typeof window === "undefined") return; // <-- Nur im Browser ausführen!
+    /* if (typeof window === "undefined") return; */ 
 
     let lenis: any;
 
