@@ -1,5 +1,5 @@
 // app/projects/[id]/page.tsx
-import type { Metadata, ResolvingMetadata, PageProps } from "next";
+import type { Metadata, PageProps } from "next";
 import { notFound } from "next/navigation";
 import { createClient } from "@/prismicio";
 import { SliceZone } from "@prismicio/react";
@@ -9,14 +9,11 @@ import SimilarProjects from "@/components/SimilarProjects";
 export const dynamic = "force-dynamic";
 export const revalidate = 60;
 
-type Params = { id: string };
-
 // --- SEO ---
 export async function generateMetadata(
-  { params }: PageProps<Params>,
-  _parent: ResolvingMetadata
+  { params }: PageProps<"/projects/[id]">
 ): Promise<Metadata> {
-  const { id } = await params;
+  const { id } = await params; // params ist ein Promise in Next 15
   const client = createClient();
 
   try {
@@ -50,17 +47,14 @@ export async function generateMetadata(
 
 // --- Page ---
 export default async function ProjectPage(
-  { params }: PageProps<Params>
+  { params }: PageProps<"/projects/[id]">
 ) {
-  const { id } = await params;
+  const { id } = await params; // <- Promise auflösen
   const client = createClient();
 
   try {
     const project = await client.getByUID("projects", id);
-
-    if (!project) {
-      notFound();
-    }
+    if (!project) notFound();
 
     return (
       <main>
