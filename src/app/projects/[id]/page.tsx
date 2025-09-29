@@ -9,14 +9,15 @@ import SimilarProjects from "@/components/SimilarProjects";
 export const revalidate = 60;
 
 type RouteProps = {
+  // In Next.js 15 sind params (und ggf. searchParams) Promises
   params: Promise<{ id: string }>;
-  // Optional: falls du searchParams nutzt, auch als Promise typisieren
+  // Optional, falls genutzt:
   // searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };
 
 // --- SEO ---
 export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
-  const { id } = await params; // <- Next 15: params ist ein Promise
+  const { id } = await params; // params auflösen
   const client = createClient();
 
   try {
@@ -66,7 +67,7 @@ export async function generateMetadata({ params }: RouteProps): Promise<Metadata
 
 // --- Page ---
 export default async function ProjectPage({ params }: RouteProps) {
-  const { id } = await params; // <- Promise auflösen
+  const { id } = await params; // Promise auflösen
   const client = createClient();
 
   try {
