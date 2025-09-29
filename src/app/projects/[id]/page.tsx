@@ -6,15 +6,15 @@ import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import SimilarProjects from "@/components/SimilarProjects";
 
-export const dynamic = "force-dynamic";
-// Wenn du Caching möchtest, entferne 'dynamic' und nutze nur revalidate.
-// export const revalidate = 60;
+// Entscheide dich für EINES von beiden:
+// export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 type IdParams = { id: string };
 
 // --- SEO ---
 export async function generateMetadata(props: any): Promise<Metadata> {
-  // Narrowing innerhalb der Funktion, damit der externe Constraint erfüllt bleibt
+  // kein PageProps, kein Destructuring im Parameter
   const params = (props?.params ?? {}) as IdParams;
   const { id } = params;
 
@@ -67,6 +67,7 @@ export async function generateMetadata(props: any): Promise<Metadata> {
 
 // --- Page ---
 export default async function ProjectPage(props: any) {
+  // kein PageProps, kein Destructuring im Parameter
   const params = (props?.params ?? {}) as IdParams;
   const { id } = params;
 
