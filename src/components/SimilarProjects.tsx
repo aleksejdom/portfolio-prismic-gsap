@@ -3,7 +3,7 @@ import styles from "./SimilarProjects.module.css";
 
 interface SimilarProjectsProps {
   currentProjectId: string;
-  category: string;
+  category: any;
 }
 
 export default async function SimilarProjects({

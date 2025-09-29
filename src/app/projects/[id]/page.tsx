@@ -1,5 +1,5 @@
 // src/app/projects/[id]/page.tsx
-import type { Metadata } from "next";
+import type { Metadata, PageProps } from "next";
 import { notFound } from "next/navigation";
 import { createClient } from "@/prismicio";
 import { SliceZone } from "@prismicio/react";
@@ -8,16 +8,11 @@ import SimilarProjects from "@/components/SimilarProjects";
 
 export const revalidate = 60;
 
-type RouteProps = {
-  // In Next.js 15 sind params (und ggf. searchParams) Promises
-  params: Promise<{ id: string }>;
-  // Optional, falls genutzt:
-  // searchParams?: Promise<Record<string, string | string[] | undefined>>;
-};
-
 // --- SEO ---
-export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
-  const { id } = await params; // params auflösen
+export async function generateMetadata(
+  { params }: PageProps<"/projects/[id]">
+): Promise<Metadata> {
+  const { id } = await params; // Next 15: params ist Promise
   const client = createClient();
 
   try {
@@ -66,7 +61,10 @@ export async function generateMetadata({ params }: RouteProps): Promise<Metadata
 }
 
 // --- Page ---
-export default async function ProjectPage({ params }: RouteProps) {
+export default async function ProjectPage(
+   props : PageProps<"/projects/[id]">
+) {
+  const { params } = props;
   const { id } = await params; // Promise auflösen
   const client = createClient();
 
