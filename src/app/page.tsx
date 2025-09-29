@@ -11,13 +11,9 @@ export default async function Page() {
   const page = await client.getSingle("home");
 
   return (
-    
       <main>
         <SliceZone slices={page.data.slices} components={components} />
       </main>  
-      
-   
-
   );
 }
 

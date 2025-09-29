@@ -49,19 +49,27 @@ const Referenzen = ({ slice }: ReferenzenProps): JSX.Element => {
 
       <div className={styles.items} ref={itemsRef}>
         {slice.primary.projekte.map((item, index) => {
-          const link =
-            item.link?.link_type === "Document" && item.link?.uid
-              ? `/projects/${item.link.uid}`
-              : item.link?.link_type === "Web" && item.link?.url
-              ? item.link?.url
-              : null;
+          let link: string | null = null;
+          if (
+            item.link?.link_type === "Document" &&
+            "uid" in item.link &&
+            typeof item.link.uid === "string"
+          ) {
+            link = `/projects/${item.link.uid}`;
+          } else if (
+            item.link?.link_type === "Web" &&
+            "url" in item.link &&
+            typeof item.link.url === "string"
+          ) {
+            link = item.link.url;
+          }
 
           return (
             <a
               key={index}
-              href={link || "#"}
+              href={link ?? undefined} // <-- Fix: use undefined instead of "#"
               className={styles.item}
-              target={item.link?.link_type === "Web" ? "_blank" : "_self"}
+              target={item.link?.link_type === "Web" ? "_blank" : undefined} // <-- Fix: use undefined for _self
               rel={
                 item.link?.link_type === "Web" ? "noopener noreferrer" : undefined
               }
@@ -73,7 +81,11 @@ const Referenzen = ({ slice }: ReferenzenProps): JSX.Element => {
                 <span className={styles.cta}>Mehr erfahren</span>
               </div>
               {item.image && (
-                <PrismicNextImage field={item.image} alt={item.image.alt || 'Bild'} className={styles.image} />
+                <PrismicNextImage 
+                  field={item.image}  
+                  className={styles.image} 
+                  alt=""
+                />
               )}
             </a>
           );

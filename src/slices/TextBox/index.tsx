@@ -16,8 +16,15 @@ const TextBox = ({ slice }: TextBoxProps): JSX.Element => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLAnchorElement>(null);
 
-  const linkUrl = slice.primary.link?.url;
-  const linkText = slice.primary.link?.text;
+  // Sicheres Auslesen der Link-URL und des Link-Texts
+  const linkUrl =
+    slice.primary.link && "url" in slice.primary.link
+      ? (slice.primary.link.url as string | undefined)
+      : undefined;
+  const linkText =
+    slice.primary.link && "text" in slice.primary.link
+      ? (slice.primary.link.text as string | undefined)
+      : undefined;
   const hasValidLink = !!linkUrl && !!linkText;
 
   useEffect(() => {

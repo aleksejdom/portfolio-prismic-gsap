@@ -6,9 +6,9 @@ import { PrismicNextLink } from "@prismicio/next";
 import { gsap } from "gsap";
 
 export default function Header() {
-  const [isActive, setIsActive] = useState(false);
-  const [settings, setSettings] = useState(null);
+  const [isActive, setIsActive] = useState(false); 
   const [isLoading, setIsLoading] = useState(true);
+  const [settings, setSettings] = useState<any>(null);
 
   const toggleMenu = () => {
     setIsActive((prev) => {
@@ -115,7 +115,7 @@ export default function Header() {
         {/* Menu */}
         <div className={`menu ${isActive ? "active" : ""}`}>
           <ul>
-            {settings.data.navigation.map(({ link, link_name }) => (
+            {settings?.data?.navigation?.map(({ link, link_name }: any) => (
               <li key={link_name}>
                 <PrismicNextLink field={link}>
                   {link_name}

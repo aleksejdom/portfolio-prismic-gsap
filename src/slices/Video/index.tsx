@@ -20,7 +20,7 @@ export type VideoProps = SliceComponentProps<Content.VideoSlice>;
 const Video = ({ slice }: VideoProps): JSX.Element => {
   const videoBoxRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
+  const scrollTriggerRef = useRef<ScrollTrigger | undefined>(undefined);
 
   useEffect(() => {
     if (videoBoxRef.current && videoRef.current) {

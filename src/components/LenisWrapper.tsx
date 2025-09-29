@@ -1,26 +1,30 @@
-
 "use client";
 
 import { useEffect } from "react";
-import Lenis from "@studio-freight/lenis";
 
-export default function LenisWrapper({ children }: { children: React.ReactNode }) {
+export default function SmoothScroll() {
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true,
-    });
+    if (typeof window === "undefined") return; // <-- Nur im Browser ausführen!
 
-    function raf(time: number) {
-      lenis.raf(time);
+    let lenis: any;
+
+    (async () => {
+      const { default: Lenis } = await import("lenis"); // lazy import
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
+      const raf = (t: number) => {
+        lenis.raf(t);
+        requestAnimationFrame(raf);
+      };
       requestAnimationFrame(raf);
-    }
+    })();
 
-    requestAnimationFrame(raf);
-
-    return () => lenis.destroy(); // Clean up resources
+    return () => {
+      lenis?.destroy?.();
+    };
   }, []);
 
-  return <>{children}</>; // Render child components without hydration dependencies
+  return null;
 }

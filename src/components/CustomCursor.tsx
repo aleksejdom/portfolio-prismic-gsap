@@ -93,6 +93,8 @@ export default function CustomCursor() {
   };
 
   useEffect(() => {
+    if (typeof window === "undefined") return; // Nur im Browser ausführen!
+
     const dot = dotRef.current!;
     const outline = outlineRef.current!;
 

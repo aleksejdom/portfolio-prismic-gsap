@@ -19,7 +19,10 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
             </div>
           ))}
         </div>
-        <PrismicNextImage field={slice.primary.image} />
+        <PrismicNextImage 
+        field={slice.primary.image} 
+        alt=""
+        />
       </div>
     </div>
   );

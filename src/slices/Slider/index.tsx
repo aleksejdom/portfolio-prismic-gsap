@@ -58,8 +58,8 @@ const Slider = ({ slice }: SliderProps): JSX.Element => {
             <div className={styles.slide}>
               <PrismicNextImage
                 field={item.image}
-                className={styles.image}
-                alt={item.alt || "Slide image"}
+                alt=""
+                className={styles.image} 
                 width={500}
                 height={300}
               />
