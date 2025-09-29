@@ -7,18 +7,17 @@ import { components } from "@/slices";
 import SimilarProjects from "@/components/SimilarProjects";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 60;
+// Wenn du Caching möchtest, entferne 'dynamic' und nutze nur revalidate.
+// export const revalidate = 60;
 
-type RouteParams = {
-  params: { id: string };
-  searchParams?: Record<string, string | string[] | undefined>;
-};
+type IdParams = { id: string };
 
 // --- SEO ---
-export async function generateMetadata(
-  { params }: RouteParams
-): Promise<Metadata> {
+export async function generateMetadata(props: any): Promise<Metadata> {
+  // Narrowing innerhalb der Funktion, damit der externe Constraint erfüllt bleibt
+  const params = (props?.params ?? {}) as IdParams;
   const { id } = params;
+
   const client = createClient();
 
   try {
@@ -67,8 +66,10 @@ export async function generateMetadata(
 }
 
 // --- Page ---
-export default async function ProjectPage({ params }: RouteParams) {
+export default async function ProjectPage(props: any) {
+  const params = (props?.params ?? {}) as IdParams;
   const { id } = params;
+
   const client = createClient();
 
   try {
