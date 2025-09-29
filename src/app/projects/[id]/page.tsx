@@ -10,16 +10,15 @@ export const dynamic = "force-dynamic";
 export const revalidate = 60;
 
 type RouteParams = {
-  params: {
-    id: string;
-  };
+  params: { id: string };
+  searchParams?: Record<string, string | string[] | undefined>;
 };
 
 // --- SEO ---
 export async function generateMetadata(
   { params }: RouteParams
 ): Promise<Metadata> {
-  const { id } = params; // kein await
+  const { id } = params;
   const client = createClient();
 
   try {
@@ -69,7 +68,7 @@ export async function generateMetadata(
 
 // --- Page ---
 export default async function ProjectPage({ params }: RouteParams) {
-  const { id } = params; // kein await
+  const { id } = params;
   const client = createClient();
 
   try {
