@@ -1,5 +1,4 @@
-// src/app/projects/[id]/page.tsx
-import type { Metadata, PageProps } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { createClient } from "@/prismicio";
 import { SliceZone } from "@prismicio/react";
@@ -12,7 +11,7 @@ export const revalidate = 60;
 export async function generateMetadata(
   { params }: { params: { id: string } }
 ): Promise<Metadata> {
-  const { id } = params; // Next 15: params ist Promise
+  const { id } = params;
   const client = createClient();
 
   try {
@@ -63,8 +62,8 @@ export async function generateMetadata(
 // --- Page ---
 export default async function ProjectPage(
   { params }: { params: { id: string } }
-) { 
-  const { id } = params; // Promise auflösen
+) {
+  const { id } = params;
   const client = createClient();
 
   try {
