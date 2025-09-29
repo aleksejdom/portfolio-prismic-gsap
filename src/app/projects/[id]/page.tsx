@@ -6,18 +6,17 @@ import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import SimilarProjects from "@/components/SimilarProjects";
 
-// Entscheide dich für EINES von beiden:
-// export const dynamic = "force-dynamic";
 export const revalidate = 60;
 
-type IdParams = { id: string };
+type RouteProps = {
+  params: Promise<{ id: string }>;
+  // Optional: falls du searchParams nutzt, auch als Promise typisieren
+  // searchParams?: Promise<Record<string, string | string[] | undefined>>;
+};
 
 // --- SEO ---
-export async function generateMetadata(props: any): Promise<Metadata> {
-  // kein PageProps, kein Destructuring im Parameter
-  const params = (props?.params ?? {}) as IdParams;
-  const { id } = params;
-
+export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
+  const { id } = await params; // <- Next 15: params ist ein Promise
   const client = createClient();
 
   try {
@@ -66,11 +65,8 @@ export async function generateMetadata(props: any): Promise<Metadata> {
 }
 
 // --- Page ---
-export default async function ProjectPage(props: any) {
-  // kein PageProps, kein Destructuring im Parameter
-  const params = (props?.params ?? {}) as IdParams;
-  const { id } = params;
-
+export default async function ProjectPage({ params }: RouteProps) {
+  const { id } = await params; // <- Promise auflösen
   const client = createClient();
 
   try {
